@@ -1,1 +1,15 @@
 # 3-Can-Tunay-TF1.99
+
+## Overview
+2 Player local arena shooter. Two characters, RED and BLUE, dashing, shooting, power-ups, two modes:
+- Arena (3 HP, respawn, last man standing)
+- High Noon (1 HP, first to shoot)
+
+## Controls
+- Player 1: W A S D to move, SPACE to shoot, LEFT SHIFT to dash.
+- Player 2: Arrow keys to move, Right Ctrl to shoot, RIGHT SHIFT to dash.
+
+## Power-Ups
+- Speed (+%25, 5s)
+- +1 Health (Permanent, can be picked once, max HP is 4)
+- Double Shot (5s)
