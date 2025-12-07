@@ -1,10 +1,7 @@
 # 3-Can-Tunay-TF1.99
 
 ## Overview
-2 Player top-down view local arena shooter. Two characters: RED and BLUE.
-Plyaers can dash, shoot, use power-ups.
-
-There are two modes:
+2 Player top-down view local arena shooter. Two characters: RED and BLUE. Players can dash, shoot and use power-ups. There are two modes:
 - Arena (3 HP, respawn, last man standing)
 - High Noon (1 HP, first to shoot)
 
