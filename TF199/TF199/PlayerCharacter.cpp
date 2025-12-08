@@ -3,7 +3,7 @@
 
 PlayerCharacter::PlayerCharacter() {}
 
-PlayerCharacter::PlayerCharacter(int id, Vector2 startPos) : id(id), pos(startPos)
+PlayerCharacter::PlayerCharacter(int id, Vector2 startPos) : id(id), pos(startPos), beginningPos(startPos)
 {
 	this->color = (id == 1) ? BLUE : RED;
 
@@ -72,7 +72,7 @@ bool PlayerCharacter::ShouldFire()
 	return false;
 }
 
-void PlayerCharacter::Update(float dt)
+void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles)
 {
 	// Movement
 	Vector2 movement = {};
@@ -117,10 +117,34 @@ void PlayerCharacter::Update(float dt)
 		shootingCooldown = shootingDelay;
 	}
 
-	// Update Projectiles
+	// Update Projectile Location
 	for (auto& projectile : projectiles)
 	{
 		projectile.Update(dt);
+	}
+	// Remove Inactive Player Projectile
+	projectiles.erase(
+		std::remove_if(projectiles.begin(), projectiles.end(),
+			[](const Projectile& p) { return !p.isActive; }),
+		projectiles.end());
+
+	// Check Enemy Projectile Collision
+	for (auto& projectile : enemyProjectiles)
+	{
+		if (CheckCollisionCircles(pos, radius, projectile.GetPosition(), projectile.GetRadius()))
+		{
+			hp--;
+			projectile.isActive = false;
+		}
+	}
+	// Remove Inactive Enemy Projectile
+	enemyProjectiles.erase(std::remove_if(enemyProjectiles.begin(), enemyProjectiles.end(),
+		[](const Projectile& p) { return !p.isActive; }),
+		enemyProjectiles.end());
+
+	if (hp <= 0)
+	{
+		Reset(beginningPos);
 	}
 
 	// Dashing

@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="TF199/TF199.vcxproj" />
+  <Project Path="TF199/TF199.vcxproj" Id="463b0907-dcda-41ce-8bf2-2305a5aac9dc" />
 </Solution>

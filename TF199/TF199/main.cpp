@@ -20,8 +20,8 @@ int main()
     {
         float dt = GetFrameTime();
 
-        player1.Update(dt);
-        player2.Update(dt);
+        player1.Update(dt, player2.projectiles);
+        player2.Update(dt, player1.projectiles);
 
         BeginDrawing();
 

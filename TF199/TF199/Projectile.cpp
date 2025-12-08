@@ -33,3 +33,18 @@ void Projectile::Draw()
 	}
 	DrawCircleV(pos, radius, color);
 }
+
+Vector2 Projectile::GetPosition()
+{
+	return pos;
+}
+
+int Projectile::GetRadius()
+{
+	return radius;
+}
+
+int Projectile::GetOwnerId()
+{
+	return ownerId;
+}

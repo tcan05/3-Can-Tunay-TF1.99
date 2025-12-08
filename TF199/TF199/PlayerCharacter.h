@@ -14,6 +14,7 @@ public:
 	int radius;
 	int speed;
 	Vector2 pos;
+	Vector2 beginningPos;
 	Color color;
 	std::vector<Projectile> projectiles;
 
@@ -34,7 +35,7 @@ public:
 	PlayerCharacter();
 	PlayerCharacter(int id, Vector2 startPos);
 	void Draw();
-	void Update(float dt);
+	void Update(float dt, std::vector<Projectile>& enemyProjectiles);
 	void Reset(Vector2 startPos);
 	void SetKeys(int up, int down, int left, int right, int shoot, int dash);
 	void SetMaxHp(int max);
