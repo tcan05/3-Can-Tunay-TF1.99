@@ -1,0 +1,5 @@
+﻿  Projectile.cpp
+C:\Users\TUNAY\source\repos\TF199\TF199\Projectile.cpp(34,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TF199.vcxproj -> C:\Users\TUNAY\source\repos\TF199\x64\Debug\TF199.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
