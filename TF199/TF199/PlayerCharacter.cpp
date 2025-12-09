@@ -134,6 +134,8 @@ void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles
 		if (CheckCollisionCircles(pos, radius, projectile.GetPosition(), projectile.GetRadius()))
 		{
 			hp--;
+			Reset(beginningPos);
+
 			projectile.isActive = false;
 		}
 	}
@@ -142,10 +144,8 @@ void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles
 		[](const Projectile& p) { return !p.isActive; }),
 		enemyProjectiles.end());
 
-	if (hp <= 0)
-	{
-		Reset(beginningPos);
-	}
+	// Player Death
+	
 
 	// Dashing
 	if (dashTimer > 0)
