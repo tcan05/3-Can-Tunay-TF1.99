@@ -13,6 +13,7 @@ public:
 	int maxHp;
 	int radius;
 	int speed;
+	bool isDead = false;
 	Vector2 pos;
 	Vector2 beginningPos;
 	Color color;
@@ -24,7 +25,7 @@ public:
 	// Shooting Controls
 	int shootingDelay;
 	int shootingCooldown;
-	Vector2 bulletDirection = {0, -1};
+	Vector2 bulletDirection;
 
 	// Dashing Controls
 	int dashDistance;
@@ -32,7 +33,6 @@ public:
 	int dashTimer;
 
 	// Methods
-	PlayerCharacter();
 	PlayerCharacter(int id, Vector2 startPos);
 	void Draw();
 	void Update(float dt, std::vector<Projectile>& enemyProjectiles);

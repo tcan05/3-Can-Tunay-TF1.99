@@ -14,7 +14,6 @@ public:
 	Color color;
 
 	// Methods
-	Projectile();
 	Projectile(int owner, Vector2 startPos, Vector2 direction);
 	void Update(float dt);
 	void Draw();

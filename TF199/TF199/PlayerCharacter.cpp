@@ -1,8 +1,6 @@
 #include "PlayerCharacter.h"
 #include "raylib.h"
 
-PlayerCharacter::PlayerCharacter() {}
-
 PlayerCharacter::PlayerCharacter(int id, Vector2 startPos) : id(id), pos(startPos), beginningPos(startPos)
 {
 	this->color = (id == 1) ? BLUE : RED;
@@ -41,6 +39,7 @@ void PlayerCharacter::Reset(Vector2 startPos)
 	this->hp = maxHp;
 	this->shootingCooldown = 0;
 	this->dashTimer = 0;
+	this->isDead = false;
 }
 
 void PlayerCharacter::SetMaxHp(int max)
@@ -74,6 +73,11 @@ bool PlayerCharacter::ShouldFire()
 
 void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles)
 {
+	if (isDead)
+	{
+		return;
+	}
+
 	// Movement
 	Vector2 movement = {};
 
@@ -134,9 +138,17 @@ void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles
 		if (CheckCollisionCircles(pos, radius, projectile.GetPosition(), projectile.GetRadius()))
 		{
 			hp--;
-			Reset(beginningPos);
-
 			projectile.isActive = false;
+
+			if (hp <= 0)
+			{
+				isDead = true;
+				break;
+			}
+			else
+			{
+				pos = beginningPos;
+			}
 		}
 	}
 	// Remove Inactive Enemy Projectile

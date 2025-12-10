@@ -1,8 +1,4 @@
-﻿  PlayerCharacter.cpp
-C:\Users\TUNAY\source\repos\TF199\TF199\PlayerCharacter.cpp(26,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\TUNAY\source\repos\TF199\TF199\PlayerCharacter.cpp(103,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\TUNAY\source\repos\TF199\TF199\PlayerCharacter.cpp(134,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\TUNAY\source\repos\TF199\TF199\PlayerCharacter.cpp(134,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  main.cpp
   TF199.vcxproj -> C:\Users\TUNAY\source\repos\TF199\x64\Debug\TF199.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

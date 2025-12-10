@@ -1,7 +1,5 @@
 #include "Projectile.h"
 
-Projectile::Projectile() {}
-
 Projectile::Projectile(int owner, Vector2 startPos, Vector2 direction)
 {
 	this->ownerId = owner;
