@@ -1,4 +1,4 @@
-# 3-Can-Tunay-TF1.99
+# 3-Can-Tunay-Two Fort 1.99
 
 ## Overview
 2 Player top-down view local arena shooter. Two characters: RED and BLUE. Players can dash, shoot and use power-ups. There are two modes:
