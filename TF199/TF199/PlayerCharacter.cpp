@@ -1,6 +1,14 @@
 #include "PlayerCharacter.h"
 #include "raylib.h"
 
+static inline float Clamp(float value, float min, float max)
+{
+	if (value < min) return min;
+	if (value > max) return max;
+	return value;
+}
+
+
 PlayerCharacter::PlayerCharacter(int id, Vector2 startPos) : id(id), pos(startPos), beginningPos(startPos)
 {
 	this->color = (id == 1) ? BLUE : RED;
@@ -44,8 +52,11 @@ void PlayerCharacter::Reset(Vector2 startPos)
 
 void PlayerCharacter::SetMaxHp(int max)
 {
-	this->maxHp = max;
+    this->maxHp = max;
+    this->hp = maxHp;
+    this->isDead = false;
 }
+
 
 void PlayerCharacter::SetKeys(int up, int down, int left, int right, int shoot, int dash)
 {
@@ -57,26 +68,15 @@ void PlayerCharacter::SetKeys(int up, int down, int left, int right, int shoot, 
 	this->keyDash = dash;
 }
 
-bool PlayerCharacter::ShouldFire()
-{
-	if (shootingCooldown > 0)
-	{
-		return false;
-	}
-	if (IsKeyDown(keyShoot))
-	{
-		shootingCooldown = shootingDelay;
-		return true;
-	}
-	return false;
-}
-
 void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles)
 {
 	if (isDead)
 	{
 		return;
 	}
+
+	const int SCREEN_WIDTH = 1280;
+	const int SCREEN_HEIGHT = 720;
 
 	// Movement
 	Vector2 movement = {};
@@ -147,8 +147,13 @@ void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles
 			}
 			else
 			{
-				pos = beginningPos;
+    			beginningPos = {
+        		(float)GetRandomValue(150, 1130),
+        		(float)GetRandomValue(150, 570)
+    		};
+    			pos = beginningPos;
 			}
+
 		}
 	}
 	// Remove Inactive Enemy Projectile
@@ -184,4 +189,8 @@ void PlayerCharacter::Update(float dt, std::vector<Projectile>& enemyProjectiles
 		}
 		dashTimer = dashCooldown * 60;
 	}
+
+	// Keep Player Within Screen Bounds
+	pos.x = Clamp(pos.x, radius, 1280 - radius);
+	pos.y = Clamp(pos.y, radius, 720 - radius);
 }

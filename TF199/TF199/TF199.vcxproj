@@ -132,6 +132,7 @@
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SelectControls.cpp" />
     <ClCompile Include="SelectGameMode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,13 +141,8 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SelectControls.h" />
     <ClInclude Include="SelectGameMode.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Exit.png" />
-    <Image Include="Assets\Options.png" />
-    <Image Include="Assets\Start Green.png" />
-    <Image Include="Assets\Start Purple.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

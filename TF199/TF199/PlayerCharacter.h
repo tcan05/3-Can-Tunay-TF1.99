@@ -39,5 +39,4 @@ public:
 	void Reset(Vector2 startPos);
 	void SetKeys(int up, int down, int left, int right, int shoot, int dash);
 	void SetMaxHp(int max);
-	bool ShouldFire();
 };

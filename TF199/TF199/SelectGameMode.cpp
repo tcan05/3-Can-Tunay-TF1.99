@@ -1,14 +1,18 @@
 #include "SelectGameMode.h"
 #include "raylib.h"
 
-SelectGameMode::SelectGameMode() : arenaButton("Assets/Start Purple.png", { 100, 200 }, 0.8f),
-								   highNoonButton("Assets/Start Purple.png", { 100, 300 }, 0.8f),
-								   backButton("Assets/Exit.png", { 100, 500 }, 0.8f)
+SelectGameMode::SelectGameMode()
+    : arenaButton({ 100, 200, 420, 60 }, "ARENA", 30),
+      highNoonButton({ 100, 300, 420, 60 }, "HIGH NOON", 30),
+      backButton({ 100, 510, 180, 60 }, "BACK", 30)
+
 {
-	arenaPressed = false;
-	highNoonPressed = false;
-	backPressed = false;
+    arenaPressed = false;
+    highNoonPressed = false;
+    backPressed = false;
+
 }
+
 
 void SelectGameMode::Update()
 {

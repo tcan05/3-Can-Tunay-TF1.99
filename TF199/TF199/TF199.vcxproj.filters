@@ -36,6 +36,9 @@
     <ClCompile Include="SelectGameMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SelectControls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCharacter.h">
@@ -56,19 +59,8 @@
     <ClInclude Include="GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Exit.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Options.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Start Green.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Start Purple.png">
-      <Filter>Assets</Filter>
-    </Image>
+    <ClInclude Include="SelectControls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

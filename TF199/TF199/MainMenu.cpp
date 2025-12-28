@@ -1,14 +1,19 @@
 #include "MainMenu.h"
 #include "raylib.h"
 
-MainMenu::MainMenu() : startButton("Assets/Start Green.png", { 100, 200 }, 0.8f),
-					   controlsButton("Assets/Options.png", { 100, 300 }, 0.8f),
-					   exitButton("Assets/Exit.png", { 100, 500 }, 0.8f)
+MainMenu::MainMenu()
+    : startButton({ 100, 200, 320, 60 }, "START", 30),
+      controlsButton({ 100, 300, 320, 60 }, "CONTROLS", 30),
+      exitButton({ 100, 510, 320, 60 }, "EXIT", 30)
+
 {
-	startPressed = false;
-	controlsPressed = false;
-	exitPressed = false;
+    startPressed = false;
+    controlsPressed = false;
+    exitPressed = false;
+
+	exitButton.SetColors(MAROON, RED, DARKGRAY, YELLOW, RAYWHITE);
 }
+
 
 void MainMenu::Update()
 {
@@ -22,7 +27,7 @@ void MainMenu::Update()
 
 void MainMenu::Draw()
 {
-	DrawText("MAIN MENU", 110, 120, 40, WHITE);
+	DrawText("TWO FORTS 1.99", 95, 120, 40, WHITE);
 
 	startButton.Draw();
 	controlsButton.Draw();
