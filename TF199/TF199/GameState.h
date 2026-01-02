@@ -4,6 +4,7 @@ enum class GameState
 {
 	MAIN_MENU,
 	CONTROLS,
+	CREDITS,
 	SELECT_MODE,
 	GAME_ARENA,
 	GAME_HIGH_NOON,

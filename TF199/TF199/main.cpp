@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "SelectGameMode.h"
 #include "SelectControls.h"
+#include "SelectCredits.h"
 #include "GameState.h"
 
 int main()
@@ -20,6 +21,8 @@ int main()
     MainMenu mainMenu;
     SelectGameMode modeMenu;
     SelectControls controlsMenu;
+    SelectCredits creditsMenu;
+
     bool highNoonInitialized = false;
     const float HIGH_NOON_COUNTDOWN = 2.5f;
     float highNoonCountdown = HIGH_NOON_COUNTDOWN;
@@ -57,6 +60,10 @@ int main()
                 {
                     gameState = GameState::CONTROLS;
                 }
+                else if (mainMenu.creditsPressed)
+                {
+                    gameState = GameState::CREDITS;
+                }
                 else if (mainMenu.exitPressed)
                 {
                     CloseWindow();
@@ -72,6 +79,18 @@ int main()
                 if (controlsMenu.backPressed)
                 {
 					gameState = GameState::MAIN_MENU;
+                }
+
+                break;
+
+            case GameState::CREDITS:
+
+                creditsMenu.Update();
+                creditsMenu.Draw();
+
+                if (creditsMenu.backPressed)
+                {
+                    gameState = GameState::MAIN_MENU;
                 }
 
                 break;
@@ -127,19 +146,6 @@ int main()
 
                 if (player1.isDead || player2.isDead)
                 {
-
-                    if (player1.hp <= 0 && player2.hp <= 0)
-                    {
-                        winnerText = "Draw";
-                    }
-                    else if (player1.hp <= 0)
-                    {
-                        winnerText = "RED WINS !";
-                    }
-                    else
-                    {
-                        winnerText = "BLUE WINS !";
-                    }
                     gameState = GameState::GAME_OVER;
                 }
 
@@ -157,26 +163,26 @@ int main()
 
                 break;
 
-            
             case GameState::GAME_HIGH_NOON:
             {
                 ClearBackground(DARKBROWN);
 
+                // Reset Gamemode
                 if (IsKeyPressed(KEY_R))
                 {
                     highNoonInitialized = false;
                     highNoonCountdown = HIGH_NOON_COUNTDOWN;
                     highNoonCanMove = false;
+
+                    player1.projectiles.clear();
+                    player2.projectiles.clear();
                 }
 
-
+                // Randomize Player Spawn Location
                 if (!highNoonInitialized)
                 {
                     player1.SetMaxHp(1);
                     player2.SetMaxHp(1);
-
-                    player1.projectiles.clear();
-                    player2.projectiles.clear();
 
                     Vector2 p1Spawn = {
                         (float)GetRandomValue(150, 450),
@@ -198,7 +204,8 @@ int main()
 
                     highNoonInitialized = true;
                 }
-
+                
+                // Can't Move Until Countdown Ends
                 if (!highNoonCanMove)
                 {
                     highNoonCountdown -= dt;
@@ -218,21 +225,8 @@ int main()
                     player2.Update(dt, player1.projectiles);
                 }
                 
-
                 if (player1.isDead || player2.isDead)
                 {
-                    if (player1.hp <= 0 && player2.hp <= 0)
-                    {
-                        winnerText = "Draw";
-                    }
-                    else if (player1.hp <= 0)
-                    {
-                        winnerText = "RED WINS !";
-                    }
-                    else
-                    {
-                        winnerText = "BLUE WINS !";
-                    }
                     gameState = GameState::GAME_OVER;
                 }
 
@@ -241,6 +235,7 @@ int main()
                 DrawText("Backspace: Main Menu", 20, 80, 20, YELLOW);
                 DrawText("R: Restart Round", 20, 105, 20, YELLOW);
 
+                // Show Countdown
                 if (!highNoonCanMove)
                 {
                     if (highNoonCountdown > 1.5f) DrawText("3", 620, 120, 90, GOLD);
@@ -260,10 +255,23 @@ int main()
                 break;
             }
 
-
             case GameState::GAME_OVER:
 
-                ClearBackground(DARKGRAY);
+                // Shows Who Won
+                if (player1.hp <= 0 && player2.hp <= 0)
+                {
+                    winnerText = "Draw";
+                }
+                else if (player1.hp <= 0)
+                {
+                    ClearBackground(RED);
+                    winnerText = "RED WINS !";
+                }
+                else
+                {
+                    ClearBackground(DARKBLUE);
+                    winnerText = "BLUE WINS !";
+                }
 
                 DrawText(winnerText.c_str(), 400, 360, 40, GOLD);
                 DrawText("Press BACKSPACE to return to Main Menu.", 400, 560, 20, YELLOW);
@@ -282,7 +290,6 @@ int main()
                 break;
         }
         
-
         EndDrawing();
     }
 

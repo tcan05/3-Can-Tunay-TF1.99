@@ -17,15 +17,15 @@ void SelectControls::Update()
 
 void SelectControls::Draw()
 {
-    DrawText("Controls:", 100, 100, 50, WHITE);
+    DrawText("Controls", 100, 100, 50, WHITE);
 
-    DrawText("Player 1:", 100, 200, 30, WHITE);
-    DrawText("Move: W A S D", 100, 240, 25, WHITE);
+    DrawText("Player 1", 100, 200, 30, GOLD);
+    DrawText("Move:  W A S D", 100, 240, 25, WHITE);
     DrawText("Shoot: SPACE", 100, 270, 25, WHITE);
     DrawText("Dash:  L-SHIFT", 100, 300, 25, WHITE);
 
-    DrawText("Player 2:", 100, 360, 30, WHITE);
-    DrawText("Move: Arrow Keys", 100, 400, 25, WHITE);
+    DrawText("Player 2", 100, 360, 30, GOLD);
+    DrawText("Move:  Arrow Keys", 100, 400, 25, WHITE);
     DrawText("Shoot: R-CTRL", 100, 430, 25, WHITE);
     DrawText("Dash:  R-SHIFT", 100, 460, 25, WHITE);
 

@@ -1,21 +1,4 @@
-﻿  Button.cpp
-  MainMenu.cpp
-  PlayerCharacter.cpp
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(32,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(107,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(138,88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(138,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(194,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(194,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(195,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\TF199 - Copy\TF199\PlayerCharacter.cpp(195,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-  Projectile.cpp
-D:\TF199 - Copy\TF199\Projectile.cpp(32,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SelectControls.cpp
-  SelectGameMode.cpp
-  Generating Code...
-  LINK : D:\TF199 - Copy\x64\Debug\TF199.exe not found or not built by the last incremental link; performing full link
-  TF199.vcxproj -> D:\TF199 - Copy\x64\Debug\TF199.exe
+﻿  SelectControls.cpp
+  TF199.vcxproj -> D:\3-Can-Tunay-TF1.99-main\TF199\x64\Debug\TF199.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

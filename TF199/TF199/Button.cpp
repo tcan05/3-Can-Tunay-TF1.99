@@ -69,7 +69,7 @@ void Button::Draw()
     int textX = (int)(rect.x + (rect.width - textWidth) / 2);
     int textY = (int)(rect.y + (rect.height - fontSize) / 2);
 
-    DrawText(label.c_str(), textX, textY, fontSize, RAYWHITE);
+    DrawText(label.c_str(), textX, textY, fontSize, textColor);
 }
 
 bool Button::IsPressed(Vector2 mousePos, bool mousePressed)

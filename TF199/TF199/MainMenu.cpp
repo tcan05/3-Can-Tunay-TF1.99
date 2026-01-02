@@ -3,12 +3,14 @@
 
 MainMenu::MainMenu()
     : startButton({ 100, 200, 320, 60 }, "START", 30),
-      controlsButton({ 100, 300, 320, 60 }, "CONTROLS", 30),
+      controlsButton({ 100, 290, 320, 60 }, "CONTROLS", 30),
+	  creditsButton({ 100, 380, 320, 60 }, "CREDITS", 30),
       exitButton({ 100, 510, 320, 60 }, "EXIT", 30)
 
 {
     startPressed = false;
     controlsPressed = false;
+	creditsPressed = false;
     exitPressed = false;
 
 	exitButton.SetColors(MAROON, RED, DARKGRAY, YELLOW, RAYWHITE);
@@ -22,14 +24,19 @@ void MainMenu::Update()
 
 	startPressed = startButton.IsPressed(mousePos, mousePressed);
 	controlsPressed = controlsButton.IsPressed(mousePos, mousePressed);
+	creditsPressed = creditsButton.IsPressed(mousePos, mousePressed);
 	exitPressed = exitButton.IsPressed(mousePos, mousePressed);
 }
 
 void MainMenu::Draw()
 {
-	DrawText("TWO FORTS 1.99", 95, 120, 40, WHITE);
+	DrawText("TWO", 95, 120, 40, BLUE);
+	DrawText("FORTS", 200, 120, 40, RED);
+	DrawText("1", 350, 120, 40, BLUE);
+	DrawText(".99", 363, 120, 40, RED);
 
 	startButton.Draw();
 	controlsButton.Draw();
+	creditsButton.Draw();
 	exitButton.Draw();
 }

@@ -133,6 +133,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SelectControls.cpp" />
+    <ClCompile Include="SelectCredits.cpp" />
     <ClCompile Include="SelectGameMode.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="PlayerCharacter.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SelectControls.h" />
+    <ClInclude Include="SelectCredits.h" />
     <ClInclude Include="SelectGameMode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

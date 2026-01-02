@@ -39,6 +39,9 @@
     <ClCompile Include="SelectControls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SelectCredits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCharacter.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SelectControls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCredits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,4 @@
 #pragma once
-#include "raylib.h"
 #include "Button.h"
 
 class MainMenu
@@ -12,11 +11,13 @@ public:
 
 	bool startPressed;
 	bool controlsPressed;
+	bool creditsPressed;
 	bool exitPressed;
 
 private:
 	Button startButton;
 	Button controlsButton;
+	Button creditsButton;
 	Button exitButton;
 };
 

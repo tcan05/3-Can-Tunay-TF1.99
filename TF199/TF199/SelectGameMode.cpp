@@ -11,6 +11,8 @@ SelectGameMode::SelectGameMode()
     highNoonPressed = false;
     backPressed = false;
 
+	arenaButton.SetColors(GRAY, DARKGRAY, DARKGRAY, YELLOW, SKYBLUE);
+	highNoonButton.SetColors(BROWN, DARKBROWN, DARKGRAY, YELLOW, RED);
 }
 
 

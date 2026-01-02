@@ -3,7 +3,7 @@
 Projectile::Projectile(int owner, Vector2 startPos, Vector2 direction)
 {
 	this->ownerId = owner;
-	this->color = (ownerId == 1) ? DARKBLUE : ORANGE;
+	this->color = (ownerId == 1) ? SKYBLUE : ORANGE;
 
 	this->pos = startPos;
 	int speed = 1000;
