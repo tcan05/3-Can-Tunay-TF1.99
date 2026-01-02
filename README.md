@@ -7,7 +7,7 @@
 
 ## Controls
 - Player 1: W A S D to move, SPACE to shoot, LEFT SHIFT to dash.
-- Player 2: Arrow keys to move, Right Ctrl to shoot, RIGHT SHIFT to dash.
+- Player 2: Arrow keys to move, RIGHT CTRL to shoot, RIGHT SHIFT to dash.
 
 ## Power-Ups
 - Speed (+%25, 5 seconds)
