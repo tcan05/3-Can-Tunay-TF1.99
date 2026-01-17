@@ -13,3 +13,5 @@
 - Speed (+%25, 5 seconds)
 - +1 Health (Permanent, can only be picked once, max HP is 4)
 - Double Shot (5 seconds)
+- Barrage
+- Piercing Bullets (5 seconds)
