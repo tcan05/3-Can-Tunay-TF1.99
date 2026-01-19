@@ -1,24 +1,26 @@
+// ===== Projectile.h =====
 #pragma once
 #include "raylib.h"
 
 class Projectile
 {
 public:
+    int ownerId;          // 1 = blue, 2 = red
+    Vector2 position;
+    Vector2 direction;
+    float speed;
+    float radius;
+    bool isActive;
 
-	//Attributes
-	Vector2 pos;
-	Vector2 velocity;
-	int ownerId;
-	int radius;
-	bool isActive;
-	Color color;
+    // NEW: bullets can pass through walls
+    bool piercing;
 
-	// Methods
-	Projectile(int owner, Vector2 startPos, Vector2 direction);
-	void Update(float dt);
-	void Draw();
-	int GetRadius();
-	int GetOwnerId();
-	Vector2 GetPosition();
+public:
+    Projectile(int ownerId, Vector2 startPos, Vector2 dir, bool piercing = false);
+
+    void Update(float dt);
+    void Draw() const;
+
+    Vector2 GetPosition() const { return position; }
+    float GetRadius() const { return radius; }
 };
-

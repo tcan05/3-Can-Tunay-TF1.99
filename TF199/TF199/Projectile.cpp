@@ -1,48 +1,66 @@
+// ===== Projectile.cpp =====
 #include "Projectile.h"
+#include <cmath>
 
-Projectile::Projectile(int owner, Vector2 startPos, Vector2 direction)
+static inline Vector2 NormalizeSafe(Vector2 v)
 {
-	this->ownerId = owner;
-	this->color = (ownerId == 1) ? SKYBLUE : ORANGE;
+    float len = sqrtf(v.x * v.x + v.y * v.y);
+    if (len <= 0.0001f) return { 1.0f, 0.0f };
+    return { v.x / len, v.y / len };
+}
 
-	this->pos = startPos;
-	int speed = 1000;
+Projectile::Projectile(int ownerId, Vector2 startPos, Vector2 dir, bool piercing)
+{
+    this->ownerId = ownerId;
+    this->position = startPos;
+    this->direction = NormalizeSafe(dir);
 
-	this->velocity = {direction.x * speed, direction.y * speed};
-	this->radius = 6;
-	this->isActive = true;
+    this->speed = 650.0f;
+    this->radius = 6.0f;
+    this->isActive = true;
+
+    this->piercing = piercing;
 }
 
 void Projectile::Update(float dt)
 {
-	if (!isActive)
-	{
-		return;
-	}
-	pos.x += velocity.x * dt;
-	pos.y += velocity.y * dt;
+    if (!isActive) return;
+
+    position.x += direction.x * speed * dt;
+    position.y += direction.y * speed * dt;
+
+    // deactivate if off-screen
+    if (position.x < -50 || position.x > 1280 + 50 ||
+        position.y < -50 || position.y > 720 + 50)
+    {
+        isActive = false;
+    }
 }
 
-void Projectile::Draw()
+void Projectile::Draw() const
 {
-	if (!isActive)
-	{
-		return;
-	}
-	DrawCircleV(pos, radius, color);
-}
+    if (!isActive) return;
 
-Vector2 Projectile::GetPosition()
-{
-	return pos;
-}
+    // simple "animation": pulse + tiny trail
+    float t = (float)GetTime();
+    float pulse = 1.0f + 0.20f * sinf(t * 20.0f);
+    float r = radius * pulse;
 
-int Projectile::GetRadius()
-{
-	return radius;
-}
+    Color c;
+    if (piercing)
+    {
+        c = VIOLET; // piercing bullets look different
+    }
+    else
+    {
+        c = (ownerId == 1) ? SKYBLUE : RED; // red-ish
+    }
 
-int Projectile::GetOwnerId()
-{
-	return ownerId;
+    // trail
+    Vector2 back = { position.x - direction.x * 10.0f, position.y - direction.y * 10.0f };
+    DrawLineEx(back, position, 3.0f, Fade(c, 0.6f));
+
+    // bullet core
+    DrawCircleV(position, r, c);
+    DrawCircleLines((int)position.x, (int)position.y, r, BLACK);
 }

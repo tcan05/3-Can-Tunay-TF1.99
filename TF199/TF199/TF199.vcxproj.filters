@@ -16,6 +16,15 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{c1755252-a6ff-4909-b3ff-9f43b6a8c4f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\blue">
+      <UniqueIdentifier>{f848432f-a6db-48f2-9f89-b2d24dd45cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\red">
+      <UniqueIdentifier>{99396b11-a7e5-40a2-9ccc-0bc10737466c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\SFX">
+      <UniqueIdentifier>{6d500c9b-4516-4843-97ad-76f81eb02062}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,6 +49,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SelectCredits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,5 +86,87 @@
     <ClInclude Include="SelectCredits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\blue\sprite_05.png">
+      <Filter>Assets\blue</Filter>
+    </Image>
+    <Image Include="Assets\blue\sprite_06.png">
+      <Filter>Assets\blue</Filter>
+    </Image>
+    <Image Include="Assets\blue\sprite_07.png">
+      <Filter>Assets\blue</Filter>
+    </Image>
+    <Image Include="Assets\blue\sprite_08.png">
+      <Filter>Assets\blue</Filter>
+    </Image>
+    <Image Include="Assets\red\sprite_00.png">
+      <Filter>Assets\red</Filter>
+    </Image>
+    <Image Include="Assets\red\sprite_01.png">
+      <Filter>Assets\red</Filter>
+    </Image>
+    <Image Include="Assets\red\sprite_02.png">
+      <Filter>Assets\red</Filter>
+    </Image>
+    <Image Include="Assets\red\sprite_03.png">
+      <Filter>Assets\red</Filter>
+    </Image>
+    <Image Include="Assets\red\sprite_04.png">
+      <Filter>Assets\red</Filter>
+    </Image>
+    <Image Include="..\..\..\main_menu_bg.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="..\..\..\game.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\SFX\Charge.ogg">
+      <Filter>Assets\SFX</Filter>
+    </None>
+    <None Include="Assets\SFX\LassoLady.ogg">
+      <Filter>Assets\SFX</Filter>
+    </None>
+    <None Include="ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\SFX\GunshotMetallic.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\GunshotRealistic.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\GunshotTest.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\MainMenu.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\MenuClick.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\MachineHit.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\Victory.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\FleshHit.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
+    <Media Include="Assets\SFX\DashTest.wav">
+      <Filter>Assets\SFX</Filter>
+    </Media>
   </ItemGroup>
 </Project>

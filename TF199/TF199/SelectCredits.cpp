@@ -25,16 +25,11 @@ void SelectCredits::Draw()
 	DrawText("- M. Emir Yurt", 100, 330, 30, WHITE);
 	DrawText("- Zeynep Ersal", 100, 370, 30, WHITE);
 
-	/*DrawText("Programming - Tunay Can", 100, 200, 30, WHITE);
-	DrawText(" - Abdullah G. H. Alamarah", 290, 240, 30, WHITE);
-	DrawText(" - M. Emir Yurt", 290, 280, 30, WHITE);
-	DrawText(" - Zeynep Ersal", 290, 320, 30, WHITE);*/
+	DrawText("Textures Found", 700, 200, 40, GOLD);
+	DrawText("- Abdullah G. H. Alamarah", 700, 250, 30, WHITE);
 
-	DrawText("Textures ", 700, 200, 40, GOLD);
-	DrawText("To Be Filled", 700, 250, 30, WHITE);
-
-	DrawText("SFX", 700, 320, 40, GOLD);
-	DrawText("To Be Filled", 700, 370, 30, WHITE);
+	DrawText("SFX Found", 700, 320, 40, GOLD);
+	DrawText("- Tunay Can", 700, 370, 30, WHITE);
 
 
     backButton.Draw();

@@ -29,5 +29,12 @@ void SelectControls::Draw()
     DrawText("Shoot: R-CTRL", 100, 430, 25, WHITE);
     DrawText("Dash:  R-SHIFT", 100, 460, 25, WHITE);
 
+    DrawText("Power Ups", 400, 200, 30, GOLD);
+    DrawText("Speed Boost: Faster Movement (5 sec)", 400, 240, 25, WHITE);
+    DrawText("More Health: +1 HP (max HP is 3)", 400, 280, 25, WHITE);
+    DrawText("Double Shot: Shoot 2 bullets (5 sec)", 400, 320, 25, WHITE);
+    DrawText("Barrage: Shoot bullets in every direction.", 400, 360, 25, WHITE);
+    DrawText("Piercing: Shoot bullets throught obstacles (5 sec)", 400, 400, 25, WHITE);
+
 	backButton.Draw();
 }

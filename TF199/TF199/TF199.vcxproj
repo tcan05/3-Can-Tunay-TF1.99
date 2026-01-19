@@ -129,22 +129,57 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="PlayerCharacter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SelectControls.cpp" />
     <ClCompile Include="SelectCredits.cpp" />
     <ClCompile Include="SelectGameMode.cpp" />
+    <ClCompile Include="SelectMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="PlayerCharacter.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SelectControls.h" />
     <ClInclude Include="SelectCredits.h" />
     <ClInclude Include="SelectGameMode.h" />
+    <ClInclude Include="SelectMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\game.png" />
+    <Image Include="..\..\..\main_menu_bg.png" />
+    <Image Include="Assets\blue\sprite_05.png" />
+    <Image Include="Assets\blue\sprite_06.png" />
+    <Image Include="Assets\blue\sprite_07.png" />
+    <Image Include="Assets\blue\sprite_08.png" />
+    <Image Include="Assets\red\sprite_00.png" />
+    <Image Include="Assets\red\sprite_01.png" />
+    <Image Include="Assets\red\sprite_02.png" />
+    <Image Include="Assets\red\sprite_03.png" />
+    <Image Include="Assets\red\sprite_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\SFX\Charge.ogg" />
+    <None Include="Assets\SFX\LassoLady.ogg" />
+    <None Include="ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\SFX\DashTest.wav" />
+    <Media Include="Assets\SFX\FleshHit.wav" />
+    <Media Include="Assets\SFX\GunshotMetallic.wav" />
+    <Media Include="Assets\SFX\GunshotRealistic.wav" />
+    <Media Include="Assets\SFX\GunshotTest.wav" />
+    <Media Include="Assets\SFX\MachineHit.wav" />
+    <Media Include="Assets\SFX\MainMenu.wav" />
+    <Media Include="Assets\SFX\MenuClick.wav" />
+    <Media Include="Assets\SFX\Victory.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
