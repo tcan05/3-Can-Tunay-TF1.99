@@ -11,7 +11,7 @@
 
 ## Power-Ups
 - Speed (+%25, 5 seconds)
-- +1 Health (Permanent, can only be picked once, max HP is 3)
+- +1 Health (Permanent, max HP is 3)
 - Double Shot (5 seconds)
 - Barrage
 - Piercing Bullets (5 seconds)
