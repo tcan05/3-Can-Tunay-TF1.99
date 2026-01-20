@@ -22,7 +22,7 @@
 2. Select the `x64` configuration
 3. Build and run the project using `Ctrl + F5` or `F5`
 
-All required assets are loaded using relative paths and are included in the repository
+All required assets are loaded using relative paths and are included in the repository.
 
 ## Credits
 
