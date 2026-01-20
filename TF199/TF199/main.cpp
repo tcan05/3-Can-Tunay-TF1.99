@@ -330,7 +330,7 @@ int main()
         {
             for (auto& p : projs)
             {
-                if (!p.isActive) continue;
+                if (!p.isActive || p.hasHitWall) continue;
 
                 for (const auto& w : currentMap.walls)
                 {
@@ -338,6 +338,7 @@ int main()
                     {
                         if (w.breakable) PlaySound(woodenHitSfx);
                         else PlaySound(metalHitSfx);
+                        p.hasHitWall = true;
                         break;
                     }
                 }

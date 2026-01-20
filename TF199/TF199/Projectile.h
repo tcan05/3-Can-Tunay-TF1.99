@@ -11,6 +11,7 @@ public:
     float speed;
     float radius;
     bool isActive;
+    bool hasHitWall = false;
 
     // NEW: bullets can pass through walls
     bool piercing;
