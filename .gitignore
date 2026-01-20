@@ -1,41 +1,48 @@
-# Prerequisites
-*.d
+# =========================
+# Visual Studio
+# =========================
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.ipch
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Build folders
+Debug/
+Release/
+x64/
+
+# =========================
+# Object & intermediate files
+# =========================
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
+*.o
+*.lo
 *.ilk
-
-# Debugger Files
 *.pdb
 
-# Compiled Dynamic libraries
+# Precompiled headers
+*.pch
+*.gch
+
+# =========================
+# Libraries (do not track)
+# =========================
+*.lib
+*.a
+*.la
+*.lai
 *.so
 *.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
+# =========================
 # Executables
+# =========================
+# Ignore executables everywhere EXCEPT bin/
 *.exe
-*.out
-*.app
+!bin/*.exe
 
-# debug information files
+# =========================
+# Other
+# =========================
 *.dwo
