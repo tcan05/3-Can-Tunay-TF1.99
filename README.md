@@ -1,5 +1,9 @@
 # 3-Can-Tunay-Two Forts 1.99
 
+## News
+Due to a complete lack of contribution and no response to messages sent,
+Mehmet Emir Yurt and Zeynep Ersal were removed from the project.
+
 ## Overview
 2 Player top-down view local arena shooter. Two characters: MAN and MACHINE. Players can dash, shoot and use power-ups. There are two modes:
 - Arena (3 HP, respawn, last man standing)
