@@ -56,11 +56,11 @@ void DrawPowerUp(const PowerUp& pu)
 
     switch (pu.type)
     {
-    case PowerUpType::SPEED:       base = Color{ 40, 80, 200, 255 }; icon = SKYBLUE; break;
-    case PowerUpType::HEALTH_ONCE: base = Color{ 30, 130, 60, 255 }; icon = LIME;    break;
-    case PowerUpType::DOUBLE_SHOT: base = Color{ 170, 120, 20, 255 }; icon = GOLD;   break;
-    case PowerUpType::BARRAGE:     base = Color{ 170, 40, 40, 255 }; icon = ORANGE;  break;
-    case PowerUpType::PIERCING:    base = Color{ 120, 60, 170, 255 }; icon = VIOLET; break;
+        case PowerUpType::SPEED:       base = Color{ 40, 80, 200, 255 }; icon = SKYBLUE; break;
+        case PowerUpType::HEALTH_ONCE: base = Color{ 30, 130, 60, 255 }; icon = LIME;    break;
+        case PowerUpType::DOUBLE_SHOT: base = Color{ 170, 120, 20, 255 }; icon = GOLD;   break;
+        case PowerUpType::BARRAGE:     base = Color{ 170, 40, 40, 255 }; icon = ORANGE;  break;
+        case PowerUpType::PIERCING:    base = Color{ 120, 60, 170, 255 }; icon = VIOLET; break;
     }
 
     DrawCircleV(pu.pos, r, base);
@@ -69,10 +69,10 @@ void DrawPowerUp(const PowerUp& pu)
     float s = pu.radius * 2.2f;
     switch (pu.type)
     {
-    case PowerUpType::SPEED:       DrawLightning(pu.pos, s, icon); break;
-    case PowerUpType::HEALTH_ONCE: DrawPlus(pu.pos, s, icon); break;
-    case PowerUpType::DOUBLE_SHOT: DrawDouble(pu.pos, s, icon); break;
-    case PowerUpType::BARRAGE:     DrawBurst(pu.pos, s, icon); break;
-    case PowerUpType::PIERCING:    DrawPierce(pu.pos, s, icon); break;
+        case PowerUpType::SPEED:       DrawLightning(pu.pos, s, icon); break;
+        case PowerUpType::HEALTH_ONCE: DrawPlus(pu.pos, s, icon); break;
+        case PowerUpType::DOUBLE_SHOT: DrawDouble(pu.pos, s, icon); break;
+        case PowerUpType::BARRAGE:     DrawBurst(pu.pos, s, icon); break;
+        case PowerUpType::PIERCING:    DrawPierce(pu.pos, s, icon); break;
     }
 }

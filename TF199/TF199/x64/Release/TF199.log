@@ -1,1 +1,18 @@
-﻿  TF199.vcxproj -> D:\gameprogrammingfinalfinalfinalfinal\x64\Release\TF199.exe
+﻿  Button.cpp
+  MainMenu.cpp
+  Map.cpp
+  PlayerCharacter.cpp
+  main.cpp
+  PowerUp.cpp
+  Projectile.cpp
+  SelectControls.cpp
+  SelectCredits.cpp
+  SelectGameMode.cpp
+  SelectMap.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 501 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  TF199.vcxproj -> D:\TF199\x64\Release\TF199.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

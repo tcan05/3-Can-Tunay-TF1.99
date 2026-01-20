@@ -79,10 +79,10 @@ PlayerCharacter::PlayerCharacter(int id, Vector2 startPos) : id(id), pos(startPo
     bulletDirection = { 1.0f, 0.0f };
 
     Gunshot = LoadSound("Assets/SFX/GunshotMetallic.wav");
-    SetSoundVolume(Gunshot, 0.35f);
+    SetSoundVolume(Gunshot, 0.3f);
 
     dashSound = LoadSound("Assets/SFX/DashTest.wav");
-	SetSoundVolume(dashSound, 0.3f);
+	SetSoundVolume(dashSound, 0.2f);
 
     if (id == 1)
     {

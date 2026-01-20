@@ -53,7 +53,7 @@ void Projectile::Draw() const
     }
     else
     {
-        c = (ownerId == 1) ? SKYBLUE : RED; // red-ish
+        c = (ownerId == 1) ? SKYBLUE : RED;
     }
 
     // trail

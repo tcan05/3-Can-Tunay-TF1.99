@@ -13,6 +13,59 @@ static Wall Breakable(float x, float y, float w, float h, int hp)
     return { {x, y, w, h}, true, hp };
 }
 
+static Texture2D boxTex = { 0 };
+static bool boxLoaded = false;
+
+static const char* ResolveBoxPath()
+{
+    const char* p1 = "Assets/box.png";
+    const char* p2 = "TF199/Assets/box.png";
+
+    if (FileExists(p1)) return p1;
+    if (FileExists(p2)) return p2;
+
+    return nullptr;
+}
+
+static void EnsureBoxLoaded()
+{
+    if (boxLoaded) return;
+
+    const char* p = ResolveBoxPath();
+    if (p)
+    {
+        boxTex = LoadTexture(p);
+        if (boxTex.id != 0) SetTextureFilter(boxTex, TEXTURE_FILTER_POINT);
+    }
+
+    boxLoaded = true;
+}
+
+static void DrawTextureTiledRect(Texture2D tex, Rectangle dst)
+{
+    if (tex.id == 0) return;
+
+    float tw = (float)tex.width;
+    float th = (float)tex.height;
+
+    for (float y = dst.y; y < dst.y + dst.height; y += th)
+    {
+        float h = th;
+        if (y + h > dst.y + dst.height) h = (dst.y + dst.height) - y;
+
+        for (float x = dst.x; x < dst.x + dst.width; x += tw)
+        {
+            float w = tw;
+            if (x + w > dst.x + dst.width) w = (dst.x + dst.width) - x;
+
+            Rectangle src = { 0, 0, w, h };
+            Rectangle d = { x, y, w, h };
+
+            DrawTexturePro(tex, src, d, { 0, 0 }, 0.0f, WHITE);
+        }
+    }
+}
+
 MapData CreateMap(MapId id)
 {
     MapData map;
@@ -27,33 +80,29 @@ MapData CreateMap(MapId id)
     switch (id)
     {
     case MapId::MAP_1:
-        
+
         map.name = "COURTYARD";
         map.background = Color{ 55, 55, 60, 255 };
 
         map.walls = {
-            // corner blocks (solid)
             Solid(220, 140, 120, 120),
             Solid(940, 140, 120, 120),
             Solid(220, 460, 120, 120),
             Solid(940, 460, 120, 120),
 
-            // mid separators (solid)
             Solid(560, 120, 40, 200),
             Solid(680, 400, 40, 200),
 
-            // breakables (dynamic cover)
             Breakable(610, 310, 60, 100, 3),
             Breakable(430, 310, 60, 100, 2)
         };
 
-        // fixed power-up spawns
         map.powerUpSpawns = {
-            Vector2{ 320, 360 },  // left mid
-            Vector2{ 930, 360 },  // right mid
-            Vector2{ 625, 220 },  // top mid
-            Vector2{ 625, 520 },  // bottom mid
-            Vector2{ 625, 360 }   // center
+            Vector2{ 320, 360 },
+            Vector2{ 930, 360 },
+            Vector2{ 625, 220 },
+            Vector2{ 625, 520 },
+            Vector2{ 625, 360 }
         };
         break;
 
@@ -149,11 +198,34 @@ MapData CreateMap(MapId id)
 
 void DrawMap(const MapData& map)
 {
+    EnsureBoxLoaded();
+
     for (const auto& w : map.walls)
     {
-        Color c = w.breakable ? ORANGE : GRAY;
-        DrawRectangleRec(w.rect, c);
-        DrawRectangleLinesEx(w.rect, 2, BLACK);
+        if (w.breakable)
+        {
+            if (boxTex.id != 0)
+            {
+                DrawTextureTiledRect(boxTex, w.rect);
+            }
+            else
+            {
+                DrawRectangleRec(w.rect, ORANGE);
+            }
+            DrawRectangleLinesEx(w.rect, 2, BLACK);
+        }
+        else
+        {
+            DrawRectangleRec(w.rect, GRAY);
+            DrawRectangleLinesEx(w.rect, 2, BLACK);
+
+            float step = 16.0f;
+            for (float x = w.rect.x + step; x < w.rect.x + w.rect.width; x += step)
+                DrawLine((int)x, (int)w.rect.y, (int)x, (int)(w.rect.y + w.rect.height), DARKGRAY);
+
+            for (float y = w.rect.y + step; y < w.rect.y + w.rect.height; y += step)
+                DrawLine((int)w.rect.x, (int)y, (int)(w.rect.x + w.rect.width), (int)y, DARKGRAY);
+        }
     }
 }
 
@@ -165,7 +237,6 @@ bool CircleHitsAnyWall(Vector2 center, float radius, const MapData& map)
     return false;
 }
 
-// UPDATED: supports piercing bullets (pierce walls only)
 void ResolveProjectileWallCollisions(std::vector<Projectile>& projectiles, MapData& map)
 {
     for (auto& p : projectiles)
@@ -183,7 +254,6 @@ void ResolveProjectileWallCollisions(std::vector<Projectile>& projectiles, MapDa
                     p.isActive = false;
                     break;
                 }
-                // piercing continues
             }
         }
     }

@@ -36,9 +36,31 @@ static const char* ResolveGameBgPath()
     return nullptr;
 }
 
+static const char* ResolveWoodTexPath()
+{
+    const char* p1 = "Assets/box.png";
+    const char* p2 = "TF199/Assets/box.png";
+
+    if (FileExists(p1)) return p1;
+    if (FileExists(p2)) return p2;
+
+    return nullptr;
+}
+
+static const char* ResolveMetalTexPath()
+{
+    const char* p1 = "Assets/metalbox.png";
+    const char* p2 = "TF199/Assets/metalbox.png";
+
+    if (FileExists(p1)) return p1;
+    if (FileExists(p2)) return p2;
+
+    return nullptr;
+}
+
 int main()
 {
-
+    // Initialization
     const int screenWidth = 1280;
     const int screenHeight = 720;
 
@@ -73,6 +95,23 @@ int main()
         }
     }
 
+    Texture2D arenaFloor = LoadTexture("Assets/arenafloor.png");
+    SetTextureFilter(arenaFloor, TEXTURE_FILTER_POINT);
+
+    Texture2D woodTex = { 0 };
+    {
+        const char* p = ResolveWoodTexPath();
+        if (p) woodTex = LoadTexture(p);
+        if (woodTex.id != 0) SetTextureFilter(woodTex, TEXTURE_FILTER_POINT);
+    }
+
+    Texture2D metalTex = { 0 };
+    {
+        const char* p = ResolveMetalTexPath();
+        if (p) metalTex = LoadTexture(p);
+        if (metalTex.id != 0) SetTextureFilter(metalTex, TEXTURE_FILTER_POINT);
+    }
+
     InitAudioDevice();
     Sound sfxMenuClick = LoadSound("Assets/SFX/MenuClick.wav");
 
@@ -84,6 +123,9 @@ int main()
     Music highNoonMusic = LoadMusicStream("Assets/SFX/LassoLady.ogg");
     Sound victoryMusic = LoadSound("Assets/SFX/Victory.wav");
 
+    Sound woodenHitSfx = LoadSound("Assets/SFX/WoodenHit.wav");
+    Sound metalHitSfx = LoadSound("Assets/SFX/MetalHit.wav");
+
     menuMusic.looping = true;
     arenaMusic.looping = true;
     highNoonMusic.looping = true;
@@ -92,6 +134,8 @@ int main()
     SetMusicVolume(arenaMusic, 0.5f);
     SetMusicVolume(highNoonMusic, 0.5f);
     SetSoundVolume(victoryMusic, 0.6f);
+    SetSoundVolume(woodenHitSfx, 0.8f);
+    SetSoundVolume(metalHitSfx, 0.7f);
 
     bool highNoonInitialized = false;
     const float HIGH_NOON_COUNTDOWN = 2.5f;
@@ -113,11 +157,13 @@ int main()
     static constexpr int PU_RESPAWN_MIN = 5;
     static constexpr int PU_RESPAWN_MAX = 15;
 
+    // Random power-up respawn time
     auto RandomPURespawn = [&]() -> float
         {
             return (float)GetRandomValue(PU_RESPAWN_MIN, PU_RESPAWN_MAX);
         };
 
+    // Build power-ups for Arena
     auto BuildArenaPowerUps = [&]()
         {
             powerUps.clear();
@@ -143,6 +189,7 @@ int main()
             }
         };
 
+    // Reset players for Arena Mode
     auto ResetArenaRound = [&]()
         {
             player1.SetMaxHp(3);
@@ -169,6 +216,59 @@ int main()
             player2.Reset(p2);
         };
 
+    // Spawn boxes for High Noon Mode
+    auto SpawnHighNoonBoxes = [&]()
+        {
+            currentMap.walls.clear();
+
+            const float bw = 48.0f;
+            const float bh = 128.0f;
+
+            const float minX = 100.0f;
+            const float maxX = (float)screenWidth - 100.0f - bw;
+            const float minY = 160.0f;
+            const float maxY = (float)screenHeight - 80.0f - bh;
+
+            const float pad = 12.0f;
+
+            // Check if box is not inside player or wall 
+            auto IsSafeRect = [&](const Rectangle& r) -> bool
+                {
+                    if (CheckCollisionCircleRec(player1.GetPos(), player1.GetRadius() + pad, r)) return false;
+                    if (CheckCollisionCircleRec(player2.GetPos(), player2.GetRadius() + pad, r)) return false;
+
+                    for (const auto& w : currentMap.walls)
+                    {
+                        if (CheckCollisionRecs(w.rect, r)) return false;
+                    }
+                    return true;
+                };
+
+            int placed = 0;
+            int tries = 0;
+
+            while (placed < 3 && tries < 5000)
+            {
+                tries++;
+
+                float x = (float)GetRandomValue((int)minX, (int)maxX);
+                float y = (float)GetRandomValue((int)minY, (int)maxY);
+
+                Rectangle r = { x, y, bw, bh };
+
+                if (!IsSafeRect(r)) continue;
+
+                Wall w;
+                w.rect = r;
+                w.breakable = true;
+                w.hp = 2;
+                currentMap.walls.push_back(w);
+
+                placed++;
+            }
+        };
+
+    // Reset players for High Noon Mode
     auto ResetHighNoonRound = [&]()
         {
             player1.SetMaxHp(1);
@@ -186,6 +286,8 @@ int main()
             player1.beginningPos = p1Spawn;
             player2.beginningPos = p2Spawn;
 
+            SpawnHighNoonBoxes();
+
             highNoonCountdown = HIGH_NOON_COUNTDOWN;
             highNoonCanMove = false;
             highNoonInitialized = true;
@@ -195,6 +297,51 @@ int main()
         {
             DrawText(TextFormat("SCORE  MAN: %d   MACHINE: %d", scoreboard.blueWins, scoreboard.redWins),
                 20, 140, 24, RAYWHITE);
+        };
+
+    auto DrawWallTextures = [&]()
+        {
+            const float tilescale = 0.04f;
+            for (const auto& w : currentMap.walls)
+            {
+                Texture2D tex = w.breakable ? woodTex : metalTex;
+                if (tex.id == 0) continue;
+
+                for (float yy = w.rect.y; yy < w.rect.y + w.rect.height; yy += tex.height)
+                {
+                    for (float xx = w.rect.x; xx < w.rect.x + w.rect.width; xx += tex.width)
+                    {
+                        float dw = std::min((float)tex.width, (w.rect.x + w.rect.width) - xx);
+                        float dh = std::min((float)tex.height, (w.rect.y + w.rect.height) - yy);
+
+                        Rectangle src = { 0, 0, dw / tilescale, dh / tilescale};
+                        Rectangle dst = { xx, yy, dw, dh };
+
+                        DrawTexturePro(tex, src, dst, { 0, 0 }, 0.0f, WHITE);
+                    }
+                }
+
+                DrawRectangleLinesEx(w.rect, 2, BLACK);
+            }
+        };
+
+
+    auto PlayHitSoundsForProjectiles = [&](std::vector<Projectile>& projs)
+        {
+            for (auto& p : projs)
+            {
+                if (!p.isActive) continue;
+
+                for (const auto& w : currentMap.walls)
+                {
+                    if (CheckCollisionCircleRec(p.GetPosition(), p.GetRadius(), w.rect))
+                    {
+                        if (w.breakable) PlaySound(woodenHitSfx);
+                        else PlaySound(metalHitSfx);
+                        break;
+                    }
+                }
+            }
         };
 
     PlayMusicStream(menuMusic);
@@ -343,22 +490,38 @@ int main()
         {
             ClearBackground(BLACK);
 
-            if (gameBg.id != 0)
+            if (arenaFloor.id != 0)
             {
-                float sw = (float)GetScreenWidth();
-                float sh = (float)GetScreenHeight();
+                int sw = GetScreenWidth();
+                int sh = GetScreenHeight();
 
-                DrawTexturePro(
-                    gameBg,
-                    { 0, 0, (float)gameBg.width, (float)gameBg.height },
-                    { 0, 0, sw, sh },
-                    { 0, 0 },
-                    0.0f,
-                    WHITE
-                );
+                float scale = 0.25f;
+
+                int stepX = (int)(arenaFloor.width * scale);
+                int stepY = (int)(arenaFloor.height * scale);
+                if (stepX < 1) stepX = 1;
+                if (stepY < 1) stepY = 1;
+
+                for (int y = 0; y < sh; y += stepY)
+                {
+                    for (int x = 0; x < sw; x += stepX)
+                    {
+                        float dw = (float)stepX;
+                        float dh = (float)stepY;
+
+                        if (x + dw > sw) dw = (float)sw - (float)x;
+                        if (y + dh > sh) dh = (float)sh - (float)y;
+
+                        Rectangle src = { 0, 0, dw / scale, dh / scale };
+                        Rectangle dst = { (float)x, (float)y, dw, dh };
+
+                        DrawTexturePro(arenaFloor, src, dst, { 0, 0 }, 0.0f, WHITE);
+                    }
+                }
             }
 
             DrawMap(currentMap);
+            DrawWallTextures();
 
             if (IsKeyPressed(KEY_BACKSPACE))
             {
@@ -392,6 +555,7 @@ int main()
 
                 DrawPowerUp(pu);
 
+                // Check whether player took the power-up or not
                 auto TryPickup = [&](PlayerCharacter& pl)
                     {
                         if (!pu.active) return;
@@ -448,6 +612,9 @@ int main()
             if (CircleHitsAnyWall(player1.GetPos(), player1.GetRadius(), currentMap)) player1.SetPos(old1);
             if (CircleHitsAnyWall(player2.GetPos(), player2.GetRadius(), currentMap)) player2.SetPos(old2);
 
+            PlayHitSoundsForProjectiles(player1.projectiles);
+            PlayHitSoundsForProjectiles(player2.projectiles);
+
             ResolveProjectileWallCollisions(player1.projectiles, currentMap);
             ResolveProjectileWallCollisions(player2.projectiles, currentMap);
 
@@ -488,6 +655,7 @@ int main()
             }
 
             DrawMap(currentMap);
+            DrawWallTextures();
 
             if (IsKeyPressed(KEY_BACKSPACE))
             {
@@ -532,6 +700,9 @@ int main()
 
                 if (CircleHitsAnyWall(player1.GetPos(), player1.GetRadius(), currentMap)) player1.SetPos(old1);
                 if (CircleHitsAnyWall(player2.GetPos(), player2.GetRadius(), currentMap)) player2.SetPos(old2);
+
+                PlayHitSoundsForProjectiles(player1.projectiles);
+                PlayHitSoundsForProjectiles(player2.projectiles);
 
                 ResolveProjectileWallCollisions(player1.projectiles, currentMap);
                 ResolveProjectileWallCollisions(player2.projectiles, currentMap);
@@ -628,7 +799,6 @@ int main()
                     ResetHighNoonRound();
                     gameState = GameState::GAME_HIGH_NOON;
                     PlayMusicStream(highNoonMusic);
-
                 }
                 else
                 {

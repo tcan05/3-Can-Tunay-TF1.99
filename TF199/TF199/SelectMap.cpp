@@ -7,8 +7,8 @@ static bool bgLoaded = false;
 
 static const char* ResolveBackgroundPath()
 {
-    const char* path1 = "Assets/main_menu_bg.png";
-    const char* path2 = "TF199/Assets/main_menu_bg.png";
+    const char* path1 = "Assets/arena.png";
+    const char* path2 = "TF199/Assets/arena.png";
 
     if (FileExists(path1)) return path1;
     if (FileExists(path2)) return path2;

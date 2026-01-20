@@ -130,6 +130,18 @@
     <Image Include="..\..\..\game.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\arenafloor.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\box.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\metalbox.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\arena.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SFX\Charge.ogg">
