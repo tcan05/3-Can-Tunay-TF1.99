@@ -32,15 +32,11 @@ All required assets are loaded using relative paths and are included in the repo
 - [High Noon Mode Soundtrack](https://opengameart.org/content/lasso-lady-seamless-loop)
 - [Victory Screen](https://opengameart.org/content/8-bit-sound-effects-library)
 - [Dash](https://opengameart.org/content/8-bit-sound-effects-library)
-
-At the time of documentation, Freesound.org was temporarily inaccessible, so individual sound-to-author mapping
-could not be done. All sources are listed below for proper attribution.
-
 - [Gunshot](https://freesound.org/people/wesleyextreme_gamer/sounds/574817/)
-- [Damage Received 1](https://freesound.org/people/Eelke/sounds/266641/)
-- [Damage Received 2](https://freesound.org/people/nicktermer/sounds/259542/)
-- [Obstacle Hit Sound 1](https://freesound.org/people/Sadiquecat/sounds/718749/)
-- [Obstacle Hit Sound 2](https://freesound.org/people/gristi/sounds/562189/)
+- [MACHINE Damage Received](https://freesound.org/people/Eelke/sounds/266641/)
+- [MAN Damage Received](https://freesound.org/people/nicktermer/sounds/259542/)
+- [Metal Wall Hit Sound](https://freesound.org/people/Sadiquecat/sounds/718749/)
+- [Wooden Box Hit Sound](https://freesound.org/people/gristi/sounds/562189/)
 
 ### Visual Assets
 - [Players](https://opengameart.org/content/pixel-art-comboys-robot-cowboy)
